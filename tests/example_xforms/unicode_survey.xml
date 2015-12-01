@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Unicode Survey.</h:title>
+    <model>
+      <instance>
+        <unicode_survey id="unicode_survey">
+          <Dont_you_just__Unicode/>
+        </unicode_survey>
+      </instance>
+      <bind nodeset="/unicode_survey/Dont_you_just__Unicode" required="true()" type="select1"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/unicode_survey/Dont_you_just__Unicode">
+      <label>Don't you just ❤ Unicode‽</label>
+      <item>
+        <label>Yes</label>
+        <value>yes</value>
+      </item>
+      <item>
+        <label>No</label>
+        <value>no</value>
+      </item>
+    </select1>
+  </h:body>
+</h:html>

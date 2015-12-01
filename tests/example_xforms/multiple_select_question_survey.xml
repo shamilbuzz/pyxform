@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Multiple &quot;Select&quot; Question Survey.</h:title>
+    <model>
+      <instance>
+        <multiple_select_question_survey id="multiple_select_question_survey">
+          <Select_One_question/>
+          <Select_Many_question/>
+        </multiple_select_question_survey>
+      </instance>
+      <bind nodeset="/multiple_select_question_survey/Select_One_question" required="true()" type="select1"/>
+      <bind nodeset="/multiple_select_question_survey/Select_Many_question" required="true()" type="select"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/multiple_select_question_survey/Select_One_question">
+      <label>&quot;Select One&quot; question.</label>
+      <item>
+        <label>Option 1</label>
+        <value>option_1</value>
+      </item>
+      <item>
+        <label>Option 2</label>
+        <value>option_2</value>
+      </item>
+    </select1>
+    <select ref="/multiple_select_question_survey/Select_Many_question">
+      <label>&quot;Select Many&quot; question.</label>
+      <item>
+        <label>Option 1</label>
+        <value>option_1</value>
+      </item>
+      <item>
+        <label>Option 2</label>
+        <value>option_2</value>
+      </item>
+    </select>
+  </h:body>
+</h:html>

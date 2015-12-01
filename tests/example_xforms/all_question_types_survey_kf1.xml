@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<h:html xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/2002/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title ref="jr:itext('All_question_types_survey.')">All question types survey.</h:title>
+    <model>
+      <instance>
+        <All_question_types_survey. id="All_question_types_survey.">
+          <deviceid/>
+          <start/>
+          <end/>
+          <Select_One_question/>
+          <Select_Many_question/>
+          <Text_question/>
+          <Number_question/>
+          <Decimal_question/>
+          <Date_question/>
+          <Time_question/>
+          <Date__Time_question/>
+          <GPS_question/>
+          <Photo_question/>
+          <Audio_question/>
+          <Video_question/>
+          <Barcode_question/>
+          <Acknowledge_question/>
+        </All_question_types_survey.>
+      </instance>
+      <bind id="deviceid" nodeset="/All_question_types_survey./deviceid" type="xsd:string" jr:preload="property" jr:preloadParams="deviceid" visible="false()"/>
+      <bind id="start" nodeset="/All_question_types_survey./start" type="xsd:time" jr:preload="timestamp" jr:preloadParams="start" visible="false()"/>
+      <bind id="end" nodeset="/All_question_types_survey./end" type="xsd:time" jr:preload="timestamp" jr:preloadParams="end" visible="false()"/>
+      <bind id="Select_One_question" nodeset="/All_question_types_survey./Select_One_question" type="xsd:string" required="true()"/>
+      <bind id="Select_Many_question" nodeset="/All_question_types_survey./Select_Many_question" type="xsd:string" required="true()"/>
+      <bind id="Text_question" nodeset="/All_question_types_survey./Text_question" type="xsd:string" required="true()"/>
+      <bind id="Number_question" nodeset="/All_question_types_survey./Number_question" type="xsd:int" required="true()"/>
+      <bind id="Decimal_question" nodeset="/All_question_types_survey./Decimal_question" type="xsd:decimal" required="true()"/>
+      <bind id="Date_question" nodeset="/All_question_types_survey./Date_question" type="xsd:date" required="true()"/>
+      <bind id="Time_question" nodeset="/All_question_types_survey./Time_question" type="xsd:time" required="true()"/>
+      <bind id="Date__Time_question" nodeset="/All_question_types_survey./Date__Time_question" type="xsd:dateTime" required="true()"/>
+      <bind id="GPS_question" nodeset="/All_question_types_survey./GPS_question" type="geopoint"/>
+      <bind id="Photo_question" nodeset="/All_question_types_survey./Photo_question" type="binary" required="true()"/>
+      <bind id="Audio_question" nodeset="/All_question_types_survey./Audio_question" type="binary" required="true()"/>
+      <bind id="Video_question" nodeset="/All_question_types_survey./Video_question" type="binary" required="true()"/>
+      <bind id="Barcode_question" nodeset="/All_question_types_survey./Barcode_question" type="barcode" required="true()"/>
+      <bind id="Acknowledge_question" nodeset="/All_question_types_survey./Acknowledge_question" type="xsd:string" required="true()"/>
+      <itext>
+        <translation lang="English">
+          <text id="All_question_types_survey.">
+            <value>All question types survey.</value>
+          </text>
+          <text id="Select_One_question">
+            <value>"Select One" question.</value>
+          </text>
+          <text id="A01_1">
+            <value>OptionA01_1</value>
+          </text>
+          <text id="Select_Many_question">
+            <value>"Select Many" question.</value>
+          </text>
+          <text id="A02_MULTI__1">
+            <value>OptionA02_1</value>
+          </text>
+          <text id="Text_question">
+            <value>"Text" question.</value>
+          </text>
+          <text id="Number_question">
+            <value>"Number" question.</value>
+          </text>
+          <text id="Decimal_question">
+            <value>"Decimal" question.</value>
+          </text>
+          <text id="Date_question">
+            <value>"Date" question.</value>
+          </text>
+          <text id="Time_question">
+            <value>"Time" question.</value>
+          </text>
+          <text id="Date__Time_question">
+            <value>"Date &amp; Time" question.</value>
+          </text>
+          <text id="GPS_question">
+            <value>"GPS" question.</value>
+          </text>
+          <text id="Photo_question">
+            <value>"Photo" question.</value>
+          </text>
+          <text id="Audio_question">
+            <value>"Audio" question.</value>
+          </text>
+          <text id="Video_question">
+            <value>"Video" question.</value>
+          </text>
+          <text id="Barcode_question">
+            <value>"Barcode" question.</value>
+          </text>
+          <text id="Acknowledge_question">
+            <value>"Acknowledge" question.</value>
+          </text>
+        </translation>
+      </itext>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 bind="Select_One_question">
+      <label ref="jr:itext('Select_One_question')"/>
+      <item>
+        <label ref="jr:itext('A01_1')"/>
+        <value>1</value>
+      </item>
+    </select1>
+    <select bind="Select_Many_question">
+      <label ref="jr:itext('Select_Many_question')"/>
+      <item>
+        <label ref="jr:itext('A02_MULTI__1')"/>
+        <value>1</value>
+      </item>
+    </select>
+    <input bind="Text_question">
+      <label ref="jr:itext('Text_question')"/>
+    </input>
+    <input bind="Number_question">
+      <label ref="jr:itext('Number_question')"/>
+    </input>
+    <input bind="Decimal_question">
+      <label ref="jr:itext('Decimal_question')"/>
+    </input>
+    <input bind="Date_question">
+      <label ref="jr:itext('Date_question')"/>
+    </input>
+    <input bind="Time_question">
+      <label ref="jr:itext('Time_question')"/>
+    </input>
+    <input bind="Date__Time_question">
+      <label ref="jr:itext('Date__Time_question')"/>
+    </input>
+    <input bind="GPS_question">
+      <label ref="jr:itext('GPS_question')"/>
+    </input>
+    <upload bind="Photo_question" mediatype="image/*">
+      <label ref="jr:itext('Photo_question')"/>
+    </upload>
+    <upload bind="Audio_question" mediatype="audio/*">
+      <label ref="jr:itext('Audio_question')"/>
+    </upload>
+    <upload bind="Video_question" mediatype="video/*">
+      <label ref="jr:itext('Video_question')"/>
+    </upload>
+    <input bind="Barcode_question">
+      <label ref="jr:itext('Barcode_question')"/>
+    </input>
+    <trigger bind="Acknowledge_question">
+      <label ref="jr:itext('Acknowledge_question')"/>
+    </trigger>
+  </h:body>
+</h:html>
