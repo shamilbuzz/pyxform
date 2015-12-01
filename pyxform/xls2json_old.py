@@ -394,7 +394,7 @@ class SurveyReader(SpreadsheetReader):
         """
         # this needs to happen after columns have been inserted
         self._dict = self._dict[SURVEY_SHEET]
-        result = {u"type": u"survey", u"name": self._name, u"children": []}
+        result = {u"type": u"survey", constants.NAME: self._name, u"children": []}
         result.update(self._settings)
         stack = [result]
         for cmd in self._dict:
@@ -443,7 +443,7 @@ class QuestionTypesReader(SpreadsheetReader):
     def _organize_by_type_name(self):
         result = {}
         for question_type in self._dict:
-            result[question_type.pop(u"name")] = question_type
+            result[question_type.pop(constants.NAME)] = question_type
         self._dict = result
 
 

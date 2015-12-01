@@ -3,6 +3,7 @@ from utils import is_valid_xml_tag, node
 from xls2json import print_pyobj_to_json
 from question_type_dictionary import QUESTION_TYPE_DICT
 from errors import PyXFormError
+from pyxform import constants
 
 
 def _overlay(over, under):
@@ -23,28 +24,27 @@ class SurveyElement(dict):
     # the following are important keys for the underlying dict that
     # describes this survey element
     FIELDS = {
-        u"name": unicode,
-        u"sms_field": unicode,
-        u"sms_option": unicode,
-        u"label": unicode,
-        u"hint": unicode,
+        constants.NAME: unicode,
+        constants.SMS_FIELD: unicode,
+        constants.SMS_OPTION: unicode,
+        constants.LABEL: unicode,
+        constants.HINT: unicode,
         u"default": unicode,
-        u"type": unicode,
-        u"appearance": unicode,
+        constants.TYPE: unicode,
+        constants.APPEARANCE: unicode,
         u"intent": unicode,
         u"jr:count" : unicode,
-        u"bind": dict,
-        u"instance": dict,
-        u"control": dict,
-        u"media": dict,
+        constants.BIND: dict,
+        constants.CONTROL: dict,
+        constants.MEDIA: dict,
         # this node will also have a parent and children, like a tree!
-        u"parent": lambda: None,
-        u"children": list,
-        u"itemset": unicode,
+        constants.PARENT: lambda: None, # FIXME: Not a type
+        constants.CHILDREN: list,
+        constants.ITEMSET_XFORM: unicode,
         u"choice_filter": unicode,
         u"query": unicode,
         u"autoplay": unicode,
-        u"flat": lambda: False,
+        u"flat": lambda: False, # FIXME: Not a type
     }
 
     def _default(self):
@@ -197,8 +197,8 @@ class SurveyElement(dict):
         print_pyobj_to_json(self.to_json_dict(), path)
 
     def __eq__(self, y):
-        return hasattr(y, 'to_json_dict') and callable(y.to_json_dict) and \
-                    self.to_json_dict() == y.to_json_dict()
+        # I need to look up how exactly to override the == operator.
+        return self.to_json_dict() == y.to_json_dict()
 
     def _translation_path(self, display_element):
         return self.get_xpath() + ":" + display_element
@@ -208,7 +208,7 @@ class SurveyElement(dict):
         Returns translations used by this element so they can be included in the <itext> block
         @see survey._setup_translations
         """
-        bind_dict = self.get(u'bind')
+        bind_dict = self.get(constants.BIND)
         if bind_dict and type(bind_dict) is dict:
             constraintMsg = bind_dict.get(u'jr:constraintMsg')
             if type(constraintMsg) is dict:
@@ -325,7 +325,7 @@ class SurveyElement(dict):
                 if k == u'jr:noAppErrorString' and type(v) is dict:
                     v = "jr:itext('%s')" % self._translation_path(u'jr:noAppErrorString')
                 bind_dict[k] = survey.insert_xpaths(v)
-            return node(u"bind", nodeset=self.get_xpath(), **bind_dict)
+            return node(constants.BIND, nodeset=self.get_xpath(), **bind_dict)
         return None
 
     def xml_bindings(self):

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Simple group form.</h:title>
+    <model>
+      <instance>
+        <Simple_group_form id="Simple_group_form">
+          <group_bt9cr48>
+            <Select_One_question/>
+            <Select_Many_question/>
+          </group_bt9cr48>
+          <meta>
+            <instanceID/>
+          </meta>
+        </Simple_group_form>
+      </instance>
+      <bind nodeset="/Simple_group_form/group_bt9cr48/Select_One_question" required="true()" type="select1"/>
+      <bind nodeset="/Simple_group_form/group_bt9cr48/Select_Many_question" required="true()" type="select"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/Simple_group_form/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/Simple_group_form/group_bt9cr48">
+      <label>Group</label>
+      <select1 ref="/Simple_group_form/group_bt9cr48/Select_One_question">
+        <label>&quot;Select One&quot; question.</label>
+        <item>
+          <label>Option 1</label>
+          <value>option_1</value>
+        </item>
+        <item>
+          <label>Option 2</label>
+          <value>option_2</value>
+        </item>
+      </select1>
+      <select ref="/Simple_group_form/group_bt9cr48/Select_Many_question">
+        <label>&quot;Select Many&quot; question.</label>
+        <item>
+          <label>Option 1</label>
+          <value>option_1</value>
+        </item>
+        <item>
+          <label>Option 2</label>
+          <value>option_2</value>
+        </item>
+      </select>
+    </group>
+  </h:body>
+</h:html>

@@ -23,36 +23,26 @@ def is_valid_xml_tag(tag):
     """
     return re.search(r"^" + XFORM_TAG_REGEXP + r"$", tag)
 
-
-def node(*args, **kwargs):
+def node(tag, *args, **kwargs):
     """
-    args[0] -- a XML tag
-    args[1:] -- an array of children to append to the newly created node
+    tag -- a XML tag
+    args -- an array of children to append to the newly created node
             or if a unicode arg is supplied it will be used to make a text node
-    kwargs -- attributes
     returns a xml.dom.minidom.Element
     """
-    blocked_attributes = ['tag']
-    tag = args[0] if len(args) > 0 else kwargs['tag']
-    args = args[1:]
     result = Element(tag)
     unicode_args = [u for u in args if type(u) == unicode]
     assert len(unicode_args) <= 1
     parsedString = False
-    # kwargs is an xml attribute dictionary,
-    # here we convert it to a xml.dom.minidom.Element
+    #kwargs is an xml attribute dictionary, here we convert it to a xml.dom.minidom.Element
     for k, v in kwargs.iteritems():
-        if k in blocked_attributes:
-            continue
         if k == 'toParseString':
-            if v is True and len(unicode_args) == 1:
+            if v == True and len(unicode_args) == 1:
                 parsedString = True
-                # Add this header string so parseString can be used?
-                s = u'<?xml version="1.0" ?><'+tag+'>' + unicode_args[0]\
-                    + u'</'+tag+'>'
+                #Add this header string so parseString can be used?
+                s = u'<?xml version="1.0" ?><'+tag+'>' + unicode_args[0] + u'</'+tag+'>'
                 node = parseString(s.encode("utf-8")).documentElement
-                # Move node's children to the result Element
-                # discarding node's root
+                #Move node's children to the result Element discarding node's root
                 for child in node.childNodes:
                     result.appendChild(copy.deepcopy(child))
         else:
@@ -90,12 +80,10 @@ def get_pyobj_from_json(str_or_path):
         doc = json.loads(str_or_path)
     return doc
 
-
 def flatten(li):
     for subli in li:
         for it in subli:
             yield it
-
 
 def sheet_to_csv(workbook_path, csv_path, sheet_name):
     wb = xlrd.open_workbook(workbook_path)
@@ -103,25 +91,21 @@ def sheet_to_csv(workbook_path, csv_path, sheet_name):
         sheet = wb.sheet_by_name(sheet_name)
     except xlrd.biffh.XLRDError:
         return False
-    if not sheet or sheet.nrows < 2:
-        return False
+    if not sheet or sheet.nrows < 2: return False
     with open(csv_path, 'wb') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         mask = [v and len(v.strip()) > 0 for v in sheet.row_values(0)]
         for r in range(sheet.nrows):
-            writer.writerow(
-                [v for v, m in zip(sheet.row_values(r), mask) if m])
+            writer.writerow([v for v,m in zip(sheet.row_values(r), mask)  if m])
     return True
-
-
+    
 def has_external_choices(json_struct):
     """
     Returns true if a select one external prompt is used in the survey.
     """
     if isinstance(json_struct, dict):
-        for k, v in json_struct.items():
-            if k == u"type" and isinstance(v, basestring) \
-                    and v.startswith(u"select one external"):
+        for k,v in json_struct.items():
+            if k == u"type" and v.startswith(u"select one external"):
                 return True
             elif has_external_choices(v):
                 return True
@@ -129,4 +113,4 @@ def has_external_choices(json_struct):
         for v in json_struct:
             if has_external_choices(v):
                 return True
-    return False
+    return False    

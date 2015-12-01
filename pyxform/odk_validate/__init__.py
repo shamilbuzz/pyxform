@@ -12,8 +12,6 @@ import signal
 CURRENT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 ODK_VALIDATE_JAR = os.path.join(CURRENT_DIRECTORY, "ODK_Validate.jar")
 
-class ODKValidateError(Exception):
-    pass
 
 #Adapted from:
 #http://betabug.ch/blogs/ch-athens/1093
@@ -94,8 +92,8 @@ def check_xform(path_to_xform):
     Throws an exception if it is not
     """
     # provide useful error message if java is not installed
-    if not _java_installed():
-        raise EnvironmentError("pyxform odk validate dependency: java not found")
+    # if not _java_installed():
+    #     raise EnvironmentError("pyxform odk validate dependency: java not found")
 
     #resultcode indicates validity of the form
     #timeout indicates whether validation ran out of time to complete
@@ -111,7 +109,7 @@ def check_xform(path_to_xform):
         return ["XForm took to long to completely validate."]
     else:
         if returncode > 0:  # Error invalid
-            raise ODKValidateError(
+            raise Exception(
                 'ODK Validate Errors:\n' + _cleanup_errors(stderr))
         elif returncode == 0:
             if stderr:

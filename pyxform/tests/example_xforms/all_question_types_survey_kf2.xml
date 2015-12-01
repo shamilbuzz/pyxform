@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>All question types survey.</h:title>
+    <model>
+      <instance>
+        <all_question_types_survey id="all_question_types_survey">
+          <Select_One_question/>
+          <Select_Many_question/>
+          <Text_question/>
+          <Number_question/>
+          <Decimal_question/>
+          <Date_question/>
+          <Time_question/>
+          <Date__Time_question/>
+          <GPS_question/>
+          <Photo_question/>
+          <Audio_question/>
+          <Video_question/>
+          <Barcode_question/>
+          <Acknowledge_question/>
+          <start/>
+          <end/>
+          <deviceid/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </all_question_types_survey>
+      </instance>
+      <bind nodeset="/all_question_types_survey/Select_One_question" required="true()" type="select1"/>
+      <bind nodeset="/all_question_types_survey/Select_Many_question" required="true()" type="select"/>
+      <bind nodeset="/all_question_types_survey/Text_question" required="true()" type="string"/>
+      <bind nodeset="/all_question_types_survey/Number_question" required="true()" type="int"/>
+      <bind nodeset="/all_question_types_survey/Decimal_question" required="true()" type="decimal"/>
+      <bind nodeset="/all_question_types_survey/Date_question" required="true()" type="date"/>
+      <bind nodeset="/all_question_types_survey/Time_question" required="true()" type="time"/>
+      <bind nodeset="/all_question_types_survey/Date__Time_question" required="true()" type="dateTime"/>
+      <bind nodeset="/all_question_types_survey/GPS_question" required="false()" type="geopoint"/>
+      <bind nodeset="/all_question_types_survey/Photo_question" required="true()" type="binary"/>
+      <bind nodeset="/all_question_types_survey/Audio_question" required="true()" type="binary"/>
+      <bind nodeset="/all_question_types_survey/Video_question" required="true()" type="binary"/>
+      <bind nodeset="/all_question_types_survey/Barcode_question" required="true()" type="barcode"/>
+      <bind nodeset="/all_question_types_survey/Acknowledge_question" required="true()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/all_question_types_survey/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/all_question_types_survey/end" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/all_question_types_survey/deviceid" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/all_question_types_survey/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/all_question_types_survey/Select_One_question">
+      <label>&quot;Select One&quot; question.</label>
+      <item>
+        <label>Option 1</label>
+        <value>option_1</value>
+      </item>
+      <item>
+        <label>Option 2</label>
+        <value>option_2</value>
+      </item>
+    </select1>
+    <select ref="/all_question_types_survey/Select_Many_question">
+      <label>&quot;Select Many&quot; question.</label>
+      <item>
+        <label>Option 1</label>
+        <value>option_1</value>
+      </item>
+      <item>
+        <label>Option 2</label>
+        <value>option_2</value>
+      </item>
+    </select>
+    <input ref="/all_question_types_survey/Text_question">
+      <label>&quot;Text&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/Number_question">
+      <label>&quot;Number&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/Decimal_question">
+      <label>&quot;Decimal&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/Date_question">
+      <label>&quot;Date&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/Time_question">
+      <label>&quot;Time&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/Date__Time_question">
+      <label>&quot;Date &amp; Time&quot; question.</label>
+    </input>
+    <input ref="/all_question_types_survey/GPS_question">
+      <label>&quot;GPS&quot; question.</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+    <upload mediatype="image/*" ref="/all_question_types_survey/Photo_question">
+      <label>&quot;Photo&quot; question.</label>
+    </upload>
+    <upload mediatype="audio/*" ref="/all_question_types_survey/Audio_question">
+      <label>&quot;Audio&quot; question.</label>
+    </upload>
+    <upload mediatype="video/*" ref="/all_question_types_survey/Video_question">
+      <label>&quot;Video&quot; question.</label>
+    </upload>
+    <input ref="/all_question_types_survey/Barcode_question">
+      <label>&quot;Barcode&quot; question.</label>
+    </input>
+    <trigger ref="/all_question_types_survey/Acknowledge_question">
+      <label>&quot;Acknowledge&quot; question.</label>
+    </trigger>
+  </h:body>
+</h:html>
