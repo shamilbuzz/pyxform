@@ -1,0 +1,21 @@
+*.pyc
+migrations
+.idea
+*.iml
+config/database.py
+p-win
+static_media
+captured_images
+temp-export-files
+*.txt~
+/env/
+.DS_Store
+/celerybeat-schedule
+*.db
+*.json
+*.log
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
